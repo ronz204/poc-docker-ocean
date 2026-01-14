@@ -1,15 +1,37 @@
-# Elysia with Bun runtime
+### Proof of Concepts | Docker Ocean
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
+Minimal REST API proof of concept built with Elysia and Bun runtime.
+
+### Prerequisites
+
+Install Bun using Scoop (Windows):
 ```bash
-bun create elysia ./elysia-example
+scoop install bun
 ```
 
-## Development
-To start the development server run:
+For other installation methods, visit [bun.sh](https://bun.sh)
+
+### Getting Started
+
+1. Install dependencies:
+```bash
+bun install
+```
+
+2. Run the development server (with hot reload):
 ```bash
 bun run dev
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) to test the API.
+
+### Project Structure
+
+```
+.
+├── src/
+│   └── Entrypoint.ts     # Main server file
+├── package.json          # Project configuration
+├── tsconfig.json         # TypeScript configuration
+└── Dockerfile            # Docker configuration
+```
