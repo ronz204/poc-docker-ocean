@@ -1,7 +1,12 @@
 import { Elysia } from "elysia";
 
-const app = new Elysia().get("/", () => {
-  return { message: "Hello, Elysia!" };
-}).listen(3000);
+const app = new Elysia();
 
-console.log(`🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port}`);
+app.get("/", () => {
+  return { message: "Hello, Elysia!" };
+});
+
+app.listen(3000);
+
+const url = `http://${app.server?.hostname}:${app.server?.port}`;
+console.log(`🦊 Elysia is running at ${url}`);
