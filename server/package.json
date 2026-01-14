@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.50",
   "scripts": {
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/Entrypoint.ts"
   },
   "dependencies": {
     "elysia": "latest"
@@ -12,5 +12,5 @@
   },
   "private":true,
   "type": "module",
-  "module": "src/index.js"
+  "module": "src/Entrypoint.ts"
 }
