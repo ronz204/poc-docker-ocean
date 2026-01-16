@@ -1,0 +1,9 @@
+name: ocean
+
+include:
+  - server/compose.yml
+
+networks:
+  ocean-network:
+    driver: bridge
+    name: ocean-net
