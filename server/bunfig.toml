@@ -1,0 +1,4 @@
+[install]
+production = false
+frozenLockfile = false
+registry = "https://registry.npmjs.org"
