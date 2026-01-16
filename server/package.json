@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.50",
   "scripts": {
+    "prod": "bun run src/Entrypoint.ts",
     "dev": "bun run --watch src/Entrypoint.ts"
   },
   "dependencies": {
