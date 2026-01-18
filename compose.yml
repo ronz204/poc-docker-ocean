@@ -2,6 +2,12 @@ name: ocean
 
 include:
   - server/compose.yml
+  - docker/postgres/compose.yml
+
+volumes:
+  ocean-data:
+    driver: local
+    name: ocean-data
 
 networks:
   ocean-network:
