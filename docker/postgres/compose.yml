@@ -3,16 +3,19 @@ services:
     image: postgres:15-alpine
     container_name: postgres
     restart: unless-stopped
+    secrets:
+      - pg_username
+      - pg_password
     environment:
       - POSTGRES_DB=oceandb
-      - POSTGRES_USER=oceanuser
-      - POSTGRES_PASSWORD=ocean1234
+      - POSTGRES_USER_FILE=/run/secrets/pg_username
+      - POSTGRES_PASSWORD_FILE=/run/secrets/pg_password
     networks:
       - ocean-network
     volumes:
       - ocean-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U oceanuser -d oceandb"]
+      test: ["CMD-SHELL", "pg_isready -U $(cat /run/secrets/pg_username) -d oceandb"]
       start_period: 15s
       interval: 10s
       timeout: 5s
