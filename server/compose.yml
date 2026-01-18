@@ -9,3 +9,6 @@ services:
       - "3000:3000"
     networks:
       - ocean-network
+    depends_on:
+      postgres:
+        condition: service_healthy
