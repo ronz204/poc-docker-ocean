@@ -10,6 +10,7 @@ RUN cd /temp && bun install --frozen-lockfile --production
 FROM build AS release
 COPY --from=install /temp/node_modules ./node_modules
 
+RUN apk add --no-cache curl
 COPY --chown=bun:bun . .
 
 USER bun
