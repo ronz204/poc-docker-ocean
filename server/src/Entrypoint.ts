@@ -1,10 +1,9 @@
 import { Elysia } from "elysia";
-import { PingRouter } from "@Routers/PingRouter";
+import { HealthController } from "@Controllers/Health";
 
-const app = new Elysia();
-
-app.use(PingRouter);
-app.listen(3000);
+const app = new Elysia()
+  .use(HealthController)
+  .listen(3000);
 
 const url = `http://${app.server?.hostname}:${app.server?.port}`;
 console.log(`🦊 Elysia is running at ${url}`);
