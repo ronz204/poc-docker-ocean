@@ -12,28 +12,27 @@ PostgreSQL database service for Ocean project using Docker Compose.
 ```
 docker/postgres/
 ├── secrets/
-│   ├── username.txt
-│   └── password.txt
+│   ├── .env
+│   └── .env.example
 ├── compose.yml
 └── README.md
 ```
 
 ### Setup
 
-### 1. Create Secrets
+### 1. Create Environment File
 
-Create the secrets directory and files:
+Copy the example environment file and configure it:
 
 ```powershell
-# Create secrets directory
-New-Item -Path "secrets" -ItemType Directory -Force
+# Copy example file
+Copy-Item -Path "secrets\.env.example" -Destination "secrets\.env"
 
-# Create username secret
-Set-Content -Path "secrets\username.txt" -Value "oceanuser" -NoNewline
-
-# Create password secret
-Set-Content -Path "secrets\password.txt" -Value "ocean1234" -NoNewline
+# Edit the .env file with your credentials
+notepad secrets\.env
 ```
+
+Update the `.env` file with your database credentials:
 
 ### 2. Start the Service
 
@@ -52,7 +51,8 @@ docker logs postgres
 
 ### Configuration
 
-- **Database**: oceandb
+- **Database**: oceandb (configurable via `POSTGRES_DB`)
+- **User**: oceanuser (configurable via `POSTGRES_USER`)
 - **Port**: 5432 (internal only)
 - **Volume**: ocean-data
 - **Network**: ocean-network
@@ -68,10 +68,11 @@ The service includes a health check that:
 ### Security Notes
 
 ⚠️ **Important**: 
-- Never commit `secrets/` directory to git
-- Add `secrets/` to `.gitignore`
+- Never commit `secrets/.env` file to git
+- The `.env` file is already in `.gitignore`
 - Use strong passwords in production
 - Consider using external secret management in production
+- Always use the `.env.example` as a template
 
 ### Useful Commands
 

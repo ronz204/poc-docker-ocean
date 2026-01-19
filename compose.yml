@@ -13,9 +13,3 @@ networks:
   ocean-network:
     driver: bridge
     name: ocean-net
-
-secrets:
-  pg_username:
-    file: ./docker/postgres/secrets/username.txt
-  pg_password:
-    file: ./docker/postgres/secrets/password.txt
