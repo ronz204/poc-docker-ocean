@@ -1,7 +1,9 @@
 import { Elysia } from "elysia";
+import { cors } from "@elysiajs/cors";
 import { HealthController } from "@Controllers/HealthController";
 
 const app = new Elysia()
+  .use(cors({ origin: "*" }))
   .use(HealthController)
   .listen(3000);
 
