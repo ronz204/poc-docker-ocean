@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { HealthController } from "@Controllers/Health";
+import { HealthController } from "@Controllers/HealthController";
 
 const app = new Elysia()
   .use(HealthController)
