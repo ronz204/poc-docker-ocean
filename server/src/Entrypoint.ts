@@ -1,10 +1,8 @@
 import { Elysia } from "elysia";
-import { cors } from "@elysiajs/cors";
-import { HealthController } from "@Controllers/HealthController";
+import { Bootstrap } from "./Bootstrap";
 
 const app = new Elysia()
-  .use(cors({ origin: "*" }))
-  .use(HealthController)
+  .use(Bootstrap)
   .listen(3000);
 
 const url = `http://${app.server?.hostname}:${app.server?.port}`;
