@@ -26,8 +26,8 @@
 
     // Paths - Base URL and path mappings
     "paths": {
-      "@Controllers/*": ["./src/presentation/controllers/*"],
-      "@Middlewares/*": ["./src/presentation/middlewares/*"],
+      "@Controllers/*": ["./src/Presentation/Controllers/*"],
+      "@Middlewares/*": ["./src/Presentation/Middlewares/*"],
     }
   }
 }
