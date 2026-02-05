@@ -2,8 +2,8 @@
   "name": "server",
   "version": "1.0.50",
   "scripts": {
-    "prod": "bun run src/Entrypoint.ts",
-    "dev": "bun run --watch src/Entrypoint.ts"
+    "start": "bun run --watch source/Entrypoint.ts",
+    "build": "bun build source/Entrypoint.ts --compile --outfile=ocean"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
