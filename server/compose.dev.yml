@@ -1,0 +1,12 @@
+services:
+  server:
+    build:
+      context: .
+      target: dev
+      dockerfile: dockerfile
+    container_name: ocean-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - ocean-network
