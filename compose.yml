@@ -1,7 +1,7 @@
 name: ocean
 
 include:
-  - server/compose.prod.yml
+  - server/compose.yml
 
 volumes:
   ocean-data:
