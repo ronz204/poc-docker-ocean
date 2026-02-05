@@ -1,18 +1,32 @@
-FROM oven/bun:1.3.5-alpine AS build
+FROM oven/bun:1.3.5-alpine AS base
+WORKDIR /usr/temp
+COPY package.json bun.lock ./
+
+FROM base AS dev
+RUN bun install --frozen-lockfile
+
+COPY . .
+USER bun
+
+EXPOSE 3000
+ENTRYPOINT [ "bun", "run", "start" ]
+
+FROM base AS build
+RUN bun install --frozen-lockfile --production
+
+COPY . .
+RUN bun run build
+
+FROM alpine:3.23 AS prod
 WORKDIR /usr/src/app
 
-FROM build AS dependencies
-RUN mkdir -p /temp
+RUN apk add --no-cache curl && \
+  addgroup -S oceangroup && \
+  adduser -S oceanuser -G oceangroup
 
-COPY package.json bun.lock /temp/
-RUN cd /temp && bun install --frozen-lockfile --production
+COPY --from=build /usr/temp/ocean .
+RUN chown -R oceanuser:oceangroup /usr/src/app
 
-FROM build AS release
-COPY --from=dependencies /temp/node_modules ./node_modules
-
-RUN apk add --no-cache curl
-COPY --chown=bun:bun . .
-
-USER bun
+USER oceanuser
 EXPOSE 3000
-ENTRYPOINT [ "bun", "run", "prod" ]
+ENTRYPOINT [ "./ocean" ]
