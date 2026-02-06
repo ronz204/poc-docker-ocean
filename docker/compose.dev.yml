@@ -1,5 +1,5 @@
 services:
-  server:
+  elysia:
     build:
-      target: dev
-    container_name: ocean-server-dev
+      target: development
+    container_name: elysia-dev

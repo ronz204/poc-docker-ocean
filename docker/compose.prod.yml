@@ -1,8 +1,8 @@
 services:
-  server:
+  elysia:
     build:
-      target: prod
-    container_name: ocean-server-prod
+      target: production
+    container_name: elysia-prod
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
