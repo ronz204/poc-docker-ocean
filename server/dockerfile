@@ -3,7 +3,7 @@ WORKDIR /usr/temp
 COPY package.json bun.lock ./
 
 
-FROM base AS dev
+FROM base AS development
 RUN bun install --frozen-lockfile
 
 COPY . .
@@ -20,7 +20,7 @@ COPY . .
 RUN bun run build
 
 
-FROM alpine:3.23 AS prod
+FROM alpine:3.23 AS production
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache curl && \
