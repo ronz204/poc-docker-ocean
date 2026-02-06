@@ -24,7 +24,7 @@
     // Bun runtime types
     "types": ["@types/bun"],
 
-    // Paths - Base URL and path mappings
+    // Path aliases
     "paths": {
       
     }
