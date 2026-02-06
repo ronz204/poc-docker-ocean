@@ -1,7 +1,8 @@
 name: ocean
 
 include:
-  - server/compose.yml
+  - path: ./server/compose.yml
+  - path: ./docker/database/compose.yml
 
 volumes:
   ocean-data:
