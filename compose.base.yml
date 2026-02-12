@@ -1,0 +1,9 @@
+volumes:
+  ocean-data:
+    driver: local
+    name: ocean-data
+
+networks:
+  ocean-network:
+    driver: bridge
+    name: ocean-network
