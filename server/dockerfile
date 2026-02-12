@@ -1,35 +1,33 @@
 FROM oven/bun:1.3.5-alpine AS base
-WORKDIR /usr/temp
+WORKDIR /usr/src/app
+
+# === Dependencies Stage ===
+FROM base AS dependencies
 COPY package.json bun.lock ./
-
-
-FROM base AS development
 RUN bun install --frozen-lockfile
 
+# === Development Stage ===
+FROM dependencies AS development
 COPY . .
 USER bun
 
 EXPOSE 3000
 ENTRYPOINT [ "bun", "run", "start" ]
 
-
-FROM base AS build
-RUN bun install --frozen-lockfile --production
-
+## === Building Stage ===
+FROM dependencies AS building
 COPY . .
 RUN bun run build
 
-
+# === Production Stage ===
 FROM alpine:3.23 AS production
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache curl && \
-  addgroup -S oceangroup && \
-  adduser -S oceanuser -G oceangroup
+RUN apk add --no-cache libstdc++ libgcc && \
+  addgroup -S oceangroup && adduser -S oceanuser -G oceangroup
 
-COPY --from=build /usr/temp/ocean .
-RUN chown -R oceanuser:oceangroup /usr/src/app
-
+COPY --from=building --chown=oceanuser:oceangroup /usr/src/app/ocean .
 USER oceanuser
+
 EXPOSE 3000
 ENTRYPOINT [ "./ocean" ]
