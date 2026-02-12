@@ -1,5 +1,0 @@
-services:
-  elysia:
-    build:
-      target: development
-    container_name: elysia-dev
