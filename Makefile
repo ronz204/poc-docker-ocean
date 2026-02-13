@@ -1,4 +1,4 @@
-.PHONY: dev prod build-dev build-prod down clean ps
+.PHONY: up-dev down-dev up-prod down-prod build-dev build-prod
 
 up-dev:
 	docker compose -f compose.dev.yml up -d
