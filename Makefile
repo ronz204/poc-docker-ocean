@@ -1,7 +1,7 @@
 .PHONY: up-dev down-dev up-prod down-prod build-dev build-prod
 
 up-dev:
-	docker compose -f compose.dev.yml up -d
+	docker compose -f compose.dev.yml up --watch
 
 down-dev:
 	docker compose -f compose.dev.yml down -v
