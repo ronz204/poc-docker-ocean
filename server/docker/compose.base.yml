@@ -1,7 +1,7 @@
 services:
   elysia:
     build:
-      context: .
+      context: ..
       dockerfile: dockerfile
     restart: unless-stopped
     ports:
