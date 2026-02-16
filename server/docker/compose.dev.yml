@@ -1,8 +1,0 @@
-services:
-  elysia:
-    build:
-      target: development
-    extends:
-      service: elysia
-      file: compose.base.yml
-    container_name: elysia-dev
