@@ -1,0 +1,15 @@
+name: ocean
+
+include:
+  - path: ./server/compose.yml
+  - path: ./docker/database/compose.yml
+
+volumes:
+  ocean-data:
+    driver: local
+    name: ocean-data
+
+networks:
+  ocean-network:
+    driver: bridge
+    name: ocean-network
