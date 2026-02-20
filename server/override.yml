@@ -8,6 +8,7 @@ services:
       retries: 3
       start_period: 10s
     depends_on:
+      # Wait for the PostgreSQL service to be healthy
       postgres:
         condition: service_healthy
     ports:
