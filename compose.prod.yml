@@ -1,6 +1,0 @@
-name: ocean-prod
-
-include:
-  - path: ./compose.base.yml
-  - path: ./server/compose.prod.yml
-  - path: ./docker/database/compose.prod.yml

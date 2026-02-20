@@ -1,6 +1,0 @@
-name: ocean-dev
-
-include:
-  - path: ./compose.base.yml
-  - path: ./server/compose.dev.yml
-  - path: ./docker/database/compose.dev.yml
