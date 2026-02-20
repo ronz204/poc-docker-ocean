@@ -1,0 +1,26 @@
+services:
+  elysia:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    extends:
+      file: override.yml
+      service: elysia
+    container_name: elysia-dev
+    restart: unless-stopped
+    develop:
+      watch:
+        # Sync source code changes
+        - action: sync
+          path: ./source
+          target: /usr/src/app/source
+        
+        # Sync package.json for hot reload detection
+        - action: sync
+          path: ./package.json
+          target: /usr/src/app/package.json
+        
+        # Rebuild when dependencies change
+        - action: rebuild
+          path: ./bun.lock  
