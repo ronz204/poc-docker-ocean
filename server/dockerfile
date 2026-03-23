@@ -8,7 +8,7 @@ RUN bun install --frozen-lockfile
 
 # === Development Stage ===
 FROM dependencies AS development
-COPY . .
+COPY --chown=bun:bun . .
 USER bun
 
 EXPOSE 3000
