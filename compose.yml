@@ -1,11 +1,14 @@
 name: ocean
 
+include:
+  - path: ./server/compose.${ENV}.yml
+
 volumes:
   ocean-data:
     driver: local
     name: ocean-data
 
 networks:
-  ocean-network:
+  ocean-net:
     driver: bridge
-    name: ocean-network
+    name: ocean-net

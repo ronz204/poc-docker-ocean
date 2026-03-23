@@ -1,0 +1,22 @@
+# testing
+/coverage
+
+# production
+/build
+*.exe
+
+# env files
+.env
+.env.dev
+.env.test
+.env.prod
+.env.local
+
+# vercel
+.vercel
+
+**/*.trace
+**/*.zip
+**/*.tar.gz
+**/*.tgz
+**/*.log
