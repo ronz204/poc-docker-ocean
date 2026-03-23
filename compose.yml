@@ -1,9 +1,5 @@
 name: ocean
 
-include:
-  - path: ./server/compose.yml
-  - path: ./docker/database/compose.yml
-
 volumes:
   ocean-data:
     driver: local
