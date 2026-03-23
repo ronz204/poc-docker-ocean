@@ -12,22 +12,4 @@ COPY . .
 USER bun
 
 EXPOSE 3000
-ENTRYPOINT [ "bun", "run", "start" ]
-
-## === Building Stage ===
-FROM dependencies AS building
-COPY . .
-RUN bun run build
-
-# === Production Stage ===
-FROM alpine:3.23 AS production
-WORKDIR /usr/src/app
-
-RUN apk add --no-cache libstdc++ libgcc && \
-  addgroup -S oceangroup && adduser -S oceanuser -G oceangroup
-
-COPY --from=building --chown=oceanuser:oceangroup /usr/src/app/ocean .
-USER oceanuser
-
-EXPOSE 3000
-ENTRYPOINT [ "./ocean" ]
+ENTRYPOINT [ "bun", "run", "dev" ]
