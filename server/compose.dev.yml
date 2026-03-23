@@ -1,0 +1,40 @@
+services:
+  api:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    container_name: api-dev
+    restart: unless-stopped
+    env_file: .env.dev
+    networks:
+      - ocean-net
+    # === Configs for development environment ===
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres: # Wait for the database to be healthy
+        condition: service_healthy
+    develop:
+      watch:
+        # Sync source code changes
+        - action: sync
+          path: ./source
+          target: /usr/src/app/source
+        # Sync package.json for dependency tracking
+        - action: sync
+          path: ./package.json
+          target: /usr/src/app/package.json
+        # Rebuild when dependencies change
+        - action: rebuild
+          path: ./bun.lock
+    
+  postgres:
+    extends:
+      service: postgres
+      file: compose.base.yml
+    container_name: postgres-dev
+    restart: unless-stopped
+    env_file: .env.dev
+    ports:
+      - "5432:5432"
