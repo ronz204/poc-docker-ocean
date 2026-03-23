@@ -3,7 +3,7 @@ import { Elysia } from "elysia";
 const app = new Elysia()
   .get("/", () => ({ ping: "pong" }))
   .get("/health", () => ({ status: "healthy" }))
-  .listen(3000);
+  .listen(process.env.PORT || 3000);
 
 const url = `http://${app.server?.hostname}:${app.server?.port}`;
 console.log(`🦊 Elysia is running at ${url}`);
